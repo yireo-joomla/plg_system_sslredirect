@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="system" method="upgrade">
+    <name>System - SSL Redirect</name>
+    <author>Yireo</author>
+    <creationDate>June 2012</creationDate>
+    <copyright>Copyright (C) 2012 Yireo.com. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>info@yireo.com</authorEmail>
+    <authorUrl>www.yireo.com</authorUrl>
+    <version>0.9.4</version>
+    <description></description>
+    <files>
+        <filename plugin="sslredirect">sslredirect.php</filename>
+        <folder>fields</folder>
+    </files>
+    <config>
+        <fields addfieldpath="/plugins/system/sslredirect/fields" name="params">
+            <fieldset name="basic">
+                <field name="menu_items" type="menuitems" default="" label="SSL-based Menu-items" />
+                <field name="components" type="components" default="" label="SSL-based Components" />
+		        <field name="loggedin" type="list" default="0" label="SSL when Logged-in" description="Force SSL for all pages when an user is logged in">
+        			<option value="0">No</option>
+        			<option value="1">Yes</option>
+		        </field>
+                <field name="custom_pages" type="textarea" default="" label="Custom SSL-pages" rows="10" cols="35" description="List of custom URLs to redirect to SSL; each entry on a new line" />
+                <field name="custom_php" type="textarea" default="" label="Custom PHP-code" rows="10" cols="35" description="PHP script to evaluate. Returning 'true' will redirect to HTTPS." />
+                <field name="exclude_components" type="components" default="" label="Exclude components" description="Exclude components from being redirect to or from SSL" />
+                <field name="redirect_nonssl" type="list" default="1" label="Redirect non-SSL to SSL" description="If a non-SSL page is encountered, that should be SSL, perform a redirect">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="redirect_ssl" type="list" default="1" label="Redirect SSL to non-SSL" description="If a SSL page is encountered, that should be non-SSL, perform a redirect">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+                <field name="redirect_admin" type="list" default="0" label="Redirect Backend to SSL" description="">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+	<updateservers>
+		<server type="extension" priority="1" name="SSLRedirect">http://www.yireo.com/documents/plg_sslredirect.xml</server>
+	</updateservers>
+</extension>
