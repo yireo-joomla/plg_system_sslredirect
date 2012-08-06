@@ -2,7 +2,7 @@
 <install version="1.5" type="plugin" group="system" method="upgrade">
 	<name>System - SSL Redirect</name>
 	<author>Yireo</author>
-	<creationDate>March 2012</creationDate>
+	<creationDate>August 2012</creationDate>
 	<copyright>Copyright (C) 2012 Yireo.com. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>info@yireo.com</authorEmail>
@@ -18,13 +18,19 @@
 	<params addpath="/plugins/system/sslredirect">
 		<param name="menu_items" type="menuitems" default="" label="SSL-based Menu-items" description="" />
 		<param name="components" type="components" default="" label="SSL-based Components" />
+		<param name="custom_pages" type="textarea" default="" label="Custom SSL-pages" rows="10" cols="35" description="List of custom URLs to redirect to SSL; each entry on a new line" />
 		<param name="loggedin" type="list" default="0" label="SSL when Logged-in" description="Force SSL for all pages when an user is logged in">
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
-		<param name="custom_pages" type="textarea" default="" label="Custom SSL-pages" rows="10" cols="35" description="List of custom URLs to redirect to SSL; each entry on a new line" />
-		<param name="custom_php" type="textarea" default="" label="Custom PHP-code" rows="10" cols="35" description="PHP script to evaluate. Returning 'true' will redirect to HTTPS." />
         <param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="custom_php" type="textarea" default="" label="Custom PHP-code" rows="10" cols="35" description="PHP script to evaluate. Returning 'true' will redirect to HTTPS." />
+		<param name="exclude_components" type="components" default="" label="Exclude components" description="Exclude components from being redirect to or from SSL" />
+        <param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="all" type="list" default="0" label="Redirect all to SSL" description="Simple flag to enforce SSL to all pages">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
 		<param name="redirect_nonssl" type="list" default="1" label="Redirect non-SSL to SSL" description="If a non-SSL page is encountered, that should be SSL, perform a redirect">
 			<option value="0">No</option>
 			<option value="1">Yes</option>
@@ -33,7 +39,6 @@
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
-		<param name="exclude_components" type="components" default="" label="Exclude components" description="Exclude components from being redirect to or from SSL" />
 		<param name="redirect_admin" type="list" default="0" label="Redirect Backend to SSL" description="">
 			<option value="0">No</option>
 			<option value="1">Yes</option>
