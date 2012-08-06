@@ -1,10 +1,10 @@
 <?php
 /**
- * Joomla! 1.6 System plugin for SSL redirection
+ * Joomla! System plugin for SSL redirection
  *
  * @author Yireo (info@yireo.com)
  * @package Joomla!
- * @copyright Copyright 2011
+ * @copyright Copyright 2012
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -49,7 +49,8 @@ class JFormFieldComponents extends JFormField
             $options[] = JHTML::_('select.option',  $component->element, $component->name.' ['.$component->element.']', 'value', 'text');
         }
 
-        $attribs = 'class="inputbox" multiple="multiple"';
+        $size = (count($options) > 12) ? 12 : count($options);
+        $attribs = 'class="inputbox" multiple="multiple" size="'.$size.'"';
         return JHTML::_('select.genericlist',  $options, $name, $attribs, 'value', 'text', $value, $name);
     }
 }

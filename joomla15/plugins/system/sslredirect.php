@@ -149,9 +149,9 @@ class plgSystemSSLRedirect extends JPlugin
                 $redirect = false;
 
             // Do not redirect with other API-calls
-            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api')) {
+            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api'))) {
                 $redirect = false;
-            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api')) {
+            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api'))) {
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
@@ -200,9 +200,9 @@ class plgSystemSSLRedirect extends JPlugin
                 $redirect = false;
 
             // Do not redirect with other API-calls
-            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api')) {
+            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api'))) {
                 $redirect = false;
-            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api')) {
+            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api'))) {
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
