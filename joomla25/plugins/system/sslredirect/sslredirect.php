@@ -135,8 +135,11 @@ class plgSystemSSLRedirect extends JPlugin
 
         // Evaluate custom PHP
         $selection = $this->getParams()->get('custom_php');
-        $assignment = "include";
-        $passPHP = $this->passPHP($this, $this, $selection, $assignment);
+        if(!empty($selection)) {
+            $passPHP = $this->passPHP($this, $this, $selection, 'include');
+        } else {
+            $passPHP = false;
+        }
 
         // When SSL is currently disabled
         if ($uri->isSSL() == false && $this->getParams()->get('redirect_nonssl', 1) == 1) {
@@ -177,7 +180,7 @@ class plgSystemSSLRedirect extends JPlugin
                 }
 
             // Determine whether to do a redirect based on custom PHP
-            } else if ($passPHP) {
+            } else if ($passPHP == true) {
                 $redirect = true;
             }
             
@@ -228,7 +231,7 @@ class plgSystemSSLRedirect extends JPlugin
                 }
             
             // Determine whether to do a redirect based on custom PHP
-            } else if ($passPHP) {
+            } else if ($passPHP == true) {
                 $redirect = false;
             }
 
@@ -293,6 +296,12 @@ class plgSystemSSLRedirect extends JPlugin
             }
             if (!isset($user)) {
                 $user = (strpos($php, '$user') === false) ? '' : JFactory::getUser();
+            }
+            if (!isset($option)) {
+                $option = (strpos($php, '$option') === false) ? '' : JRequest::getCmd('option');
+            }
+            if (!isset($view)) {
+                $view = (strpos($php, '$view') === false) ? '' : JRequest::getCmd('view');
             }
 
             $vars = '$article,$Itemid,$mainframe,$app,$database,$db,$user';
