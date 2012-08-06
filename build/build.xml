@@ -55,9 +55,13 @@
         <exec command="cat ${joomla25}/plugins/system/sslredirect/sslredirect.xml|grep /version|sed 's/[^0-9\.]*//g'" outputProperty="version" />
         <exec command="mkdir -p ${joomla25_package_dir}" />
 
-        <copy todir="${joomla25_package_dir}">
+        <copy todir="${joomla25_package_dir}" haltonerror="false">
             <fileset dir="${joomla25}/plugins/system/sslredirect">
                 <include name="**" />
+            </fileset>
+            <fileset dir="${joomla25}/administrator/language/en-GB">
+                <include name="en-GB.plg_system_sslredirect.ini" />
+                <include name="en-GB.plg_system_sslredirect.sys.ini" />
             </fileset>
         </copy>
         <copy file="${gpl}" tofile="${joomla25_package_dir}/LICENSE.txt" overwrite="true" />
