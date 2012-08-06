@@ -9,7 +9,7 @@
  * @link http://www.yireo.com
  * @contributor Jisse Reitsma, Yireo (main code)
  * @contributor Stephen Roberts (custom PHP-addition)
- * @contributor Peter van Westen, NoNumber (passPHP function)
+ * @contributor Peter van Westen, NoNumber (copying passPHP function)
  * version 0.9.4:
     New PHP-evaluation
     J30 compat

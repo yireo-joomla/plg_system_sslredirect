@@ -2,7 +2,7 @@
 <extension version="1.6" type="plugin" group="system" method="upgrade">
     <name>System - SSL Redirect</name>
     <author>Yireo</author>
-    <creationDate>June 2012</creationDate>
+    <creationDate>August 2012</creationDate>
     <copyright>Copyright (C) 2012 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
@@ -22,9 +22,13 @@
         			<option value="0">No</option>
         			<option value="1">Yes</option>
 		        </field>
+            </fieldset>
+            <fieldset name="advanced">
                 <field name="custom_pages" type="textarea" default="" label="Custom SSL-pages" rows="10" cols="35" description="List of custom URLs to redirect to SSL; each entry on a new line" />
                 <field name="custom_php" type="textarea" default="" label="Custom PHP-code" rows="10" cols="35" description="PHP script to evaluate. Returning 'true' will redirect to HTTPS." />
                 <field name="exclude_components" type="components" default="" label="Exclude components" description="Exclude components from being redirect to or from SSL" />
+            </fieldset>
+            <fieldset name="system" label="PLG_SYSTEM_SSLREDIRECT_SYSTEM_FIELDSET_LABEL">
                 <field name="redirect_nonssl" type="list" default="1" label="Redirect non-SSL to SSL" description="If a non-SSL page is encountered, that should be SSL, perform a redirect">
                     <option value="0">No</option>
                     <option value="1">Yes</option>
