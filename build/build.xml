@@ -14,6 +14,7 @@
     <target name="build" description="Build all Joomla! packages">
         <phingcall target="build_joomla15_plugin" />
         <phingcall target="build_joomla25_plugin" />
+        <phingcall target="build_all_zip" />
     </target>
 
     <!-- Target: build_joomla15_plugin -->
@@ -81,6 +82,16 @@
             </fileset>
         </tar>
         <copy file="${packages}/plg_sslredirect_${version}_j25.tgz" tofile="${packages}/plg_sslredirect_j25.tgz" overwrite="true" />
+    </target>
+
+    <!-- Target: build_all_zip -->
+    <target name="build_all_zip">
+        <zip destfile="${packages}/plg_sslredirect_UNZIPFIRST.zip">
+            <fileset dir="${packages}">
+                <include name="plg_sslredirect_j15.zip" />
+                <include name="plg_sslredirect_j25.zip" />
+            </fileset>
+        </zip>
     </target>
 
 </project>
