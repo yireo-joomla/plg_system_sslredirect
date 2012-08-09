@@ -3,8 +3,7 @@
  * Joomla! System plugin for SSL redirection
  *
  * @author Yireo (info@yireo.com)
- * @package Joomla!
- * @copyright Copyright 2012
+ * @copyright Copyright 2011 Yireo.com. All rights reserved
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -12,45 +11,28 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die( 'Restricted access' );
 
-// Import classes
-jimport('joomla.html.html');
-jimport('joomla.access.access');
-jimport('joomla.form.formfield');
-
 /**
- * Form Field-class for selecting a component
+ * Renders a components element
  */
-class JFormFieldComponents extends JFormField
+class JElementComponents extends JElement
 {
-    /*
-     * Form field type
-     */
-    public $type = 'Components';
+    public $_name = 'Components';
 
-    /*
-     * Method to construct the HTML of this element
-     *
-     * @param null
-     * @return string
-     */
-    protected function getInput()
+    public function fetchElement($name, $value, &$node, $control_name)
     {
-        $name = $this->name.'[]';
-        $value = $this->value;
         $db =& JFactory::getDBO();
 
         // load the list of components
-        $query = 'SELECT * FROM `#__extensions` WHERE `type`="component" AND `enabled`=1';
+        $query = 'SELECT * FROM `#__components` WHERE `enabled`=1 AND `parent`=0 AND `link`!=""';
         $db->setQuery( $query );
         $components = $db->loadObjectList();
 
         $options = array();
         foreach ($components as $component) {
-            $options[] = JHTML::_('select.option',  $component->element, $component->name.' ['.$component->element.']', 'value', 'text');
+            $options[] = JHTML::_('select.option',  $component->option, $component->name.' ['.$component->option.']', 'value', 'text');
         }
 
-        $size = (count($options) > 12) ? 12 : count($options);
-        $attribs = 'class="inputbox" multiple="multiple" size="'.$size.'"';
-        return JHTML::_('select.genericlist',  $options, $name, $attribs, 'value', 'text', $value, $name);
+        $attribs = 'class="inputbox" multiple="multiple"';
+        return JHTML::_('select.genericlist',  $options, ''.$control_name.'['.$name.'][]', $attribs, 'value', 'text', $value, $control_name.$name);
     }
 }
