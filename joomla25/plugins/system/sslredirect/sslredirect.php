@@ -48,6 +48,30 @@ class plgSystemSSLRedirect extends JPlugin
     }
 
     /**
+     * Event onAfterInitialise
+     *
+     * @access public
+     * @param null
+     * @return null
+     */
+    public function onAfterInitialise()
+    {
+        // Get system variables
+        $application = JFactory::getApplication();
+        $uri = JFactory::getURI();
+
+        // Redirect the backend
+        if ($application->isAdmin() == true && $this->getParams()->get('redirect_admin', 0) == 1) {
+            if ($uri->isSSL() == false) {
+                $uri->setScheme('https');
+                $application->redirect($uri->toString());
+                return $application->close();
+            }
+        }
+
+    }
+
+    /**
      * Event onAfterRoute
      *
      * @access public
@@ -61,15 +85,6 @@ class plgSystemSSLRedirect extends JPlugin
         $uri = JFactory::getURI();
         $current_path = $uri->toString(array('path', 'query', 'fragment'));
         $Itemid = JRequest::getInt('Itemid');
-
-        // Redirect the backend
-        if ($application->isAdmin() == true && $this->getParams()->get('redirect_admin', 0) == 1) {
-            if ($uri->isSSL() == false) {
-                $uri->setScheme('https');
-                $application->redirect($uri->toString());
-                return $application->close();
-            }
-        }
 
         // Do not rewrite for anything else but the frontend
         if ($application->isSite() == false) {
@@ -158,7 +173,7 @@ class plgSystemSSLRedirect extends JPlugin
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
-            } else if ($this->getParams()->get('loggedin', 0) == 1 && JFactory::getUser()->guest == 0) { 
+            } else if ($this->getParams()->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0) { 
                 $redirect = true;
 
             // Determine whether to do a redirect based on the menu-items
@@ -209,8 +224,8 @@ class plgSystemSSLRedirect extends JPlugin
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
-            } else if ($this->getParams()->get('loggedin', 0) == 1 && JFactory::getUser()->guest == 0) { 
-                $redirect = false;
+            } else if ($this->getParams()->get('loggedin', -1) == 0 && JFactory::getUser()->guest == 0) { 
+                $redirect = true;
 
             // Determine whether to do a redirect based on the menu-items
             } else if (in_array($Itemid, $menu_items)) {
