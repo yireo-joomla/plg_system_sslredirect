@@ -37,7 +37,7 @@ class JFormFieldComponents extends JFormField
     {
         $name = $this->name.'[]';
         $value = $this->value;
-        $db =& JFactory::getDBO();
+        $db = JFactory::getDBO();
 
         // load the list of components
         $query = 'SELECT * FROM `#__extensions` WHERE `type`="component" AND `enabled`=1';

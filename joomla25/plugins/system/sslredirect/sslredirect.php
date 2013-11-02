@@ -4,16 +4,12 @@
  *
  * @author Yireo (info@yireo.com)
  * @package Joomla!
- * @copyright Copyright 2012
+ * @copyright Copyright 2013
  * @license GNU Public License
  * @link http://www.yireo.com
  * @contributor Jisse Reitsma, Yireo (main code)
  * @contributor Stephen Roberts (custom PHP-addition)
  * @contributor Peter van Westen, NoNumber (copying passPHP function)
- * version 0.9.4:
-    New PHP-evaluation
-    J30 compat
-    Language file
  */
 
 // Check to ensure this file is included in Joomla!
@@ -224,8 +220,8 @@ class plgSystemSSLRedirect extends JPlugin
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
-            } else if ($this->getParams()->get('loggedin', -1) == 0 && JFactory::getUser()->guest == 0) { 
-                $redirect = true;
+            } else if ($this->getParams()->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0) { 
+                $redirect = false;
 
             // Determine whether to do a redirect based on the menu-items
             } else if (in_array($Itemid, $menu_items)) {

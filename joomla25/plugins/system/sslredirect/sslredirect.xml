@@ -2,12 +2,12 @@
 <extension version="2.5" type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SSLREDIRECT</name>
     <author>Yireo</author>
-    <creationDate>March 2013</creationDate>
+    <creationDate>September 2013</creationDate>
     <copyright>Copyright (C) 2013 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
     <description>PLG_SYSTEM_SSLREDIRECT_DESC</description>
 
     <files>

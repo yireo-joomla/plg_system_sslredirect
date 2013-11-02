@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package Joomla!
- * @copyright Copyright 2012
+ * @copyright Copyright 2013
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -34,7 +34,7 @@ class JFormFieldMenuItems extends JFormField
     {
         $name = $this->name.'[]';
         $value = $this->value;
-        $db =& JFactory::getDBO();
+        $db = JFactory::getDBO();
 
         // load the list of components
         $query = 'SELECT * FROM `#__menu` WHERE `client_id`="0"';
