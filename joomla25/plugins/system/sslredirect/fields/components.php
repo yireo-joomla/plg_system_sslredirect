@@ -20,7 +20,7 @@ jimport('joomla.form.formfield');
 /**
  * Form Field-class for selecting a component
  */
-class JFormFieldComponents extends JFormField
+class JFormFieldComponents extends JFormFieldList
 {
     /*
      * Form field type
@@ -48,6 +48,7 @@ class JFormFieldComponents extends JFormField
         foreach ($components as $component) {
             $options[] = JHTML::_('select.option',  $component->element, $component->name.' ['.$component->element.']', 'value', 'text');
         }
+		$options = array_merge(parent::getOptions(), $options);
 
         $size = (count($options) > 12) ? 12 : count($options);
         $attribs = 'class="inputbox" multiple="multiple" size="'.$size.'"';
