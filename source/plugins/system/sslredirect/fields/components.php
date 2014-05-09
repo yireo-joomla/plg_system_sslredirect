@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package Joomla!
- * @copyright Copyright 2012
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
  */
@@ -16,6 +16,7 @@ defined('_JEXEC') or die( 'Restricted access' );
 jimport('joomla.html.html');
 jimport('joomla.access.access');
 jimport('joomla.form.formfield');
+include_once JPATH_LIBRARIES.'/joomla/form/fields/list.php';
 
 /**
  * Form Field-class for selecting a component
