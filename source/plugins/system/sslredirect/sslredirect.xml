@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="2.5" type="plugin" group="system" method="upgrade">
+<extension version="3.3" type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SSLREDIRECT</name>
     <author>Yireo</author>
-    <creationDate>April 2014</creationDate>
+    <creationDate>October 2014</creationDate>
     <copyright>Copyright (C) 2014 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.9.10</version>
+    <version>0.9.11</version>
     <description>PLG_SYSTEM_SSLREDIRECT_DESC</description>
 
     <files>
@@ -55,6 +55,10 @@
                     <option value="1">JYES</option>
                 </field>
                 <field name="redirect_admin" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN" description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+                <field name="hsts_header" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER" description="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>

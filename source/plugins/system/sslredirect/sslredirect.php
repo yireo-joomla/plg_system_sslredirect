@@ -4,7 +4,7 @@
  *
  * @author Yireo (info@yireo.com)
  * @package Joomla!
- * @copyright Copyright 2013
+ * @copyright Copyright 2014
  * @license GNU Public License
  * @link http://www.yireo.com
  * @contributor Jisse Reitsma, Yireo (main code)
@@ -65,6 +65,12 @@ class plgSystemSSLRedirect extends JPlugin
         // Do not rewrite for anything else but the frontend
         if ($application->isSite() == false) {
             return false;
+        }
+
+        // Add HSTS header if enabled
+        if ($this->params->get('all', 0) == 1 && $this->params->get('hsts_header', 0) == 1) {
+            $age = 10886400;
+            header('Strict-Transport-Security: max-age='.$age.'; includeSubDomains; preload');
         }
 
         // Redirect all pages
