@@ -2,12 +2,12 @@
 <extension version="3.3" type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SSLREDIRECT</name>
     <author>Yireo</author>
-    <creationDate>October 2014</creationDate>
+    <creationDate>December 2014</creationDate>
     <copyright>Copyright (C) 2014 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.9.11</version>
+    <version>0.9.12</version>
     <description>PLG_SYSTEM_SSLREDIRECT_DESC</description>
 
     <files>
@@ -40,6 +40,7 @@
                 <field name="exclude_components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS" description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS_DESC">
                     <option value="">JNONE</option>
                 </field>
+                <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES" rows="10" cols="35" description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC" />
             </fieldset>
             <fieldset name="system" label="PLG_SYSTEM_SSLREDIRECT_SYSTEM_FIELDSET_LABEL">
                 <field name="all" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL" description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">

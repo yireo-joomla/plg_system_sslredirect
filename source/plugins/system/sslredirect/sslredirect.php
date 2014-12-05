@@ -116,6 +116,19 @@ class plgSystemSSLRedirect extends JPlugin
             return;
         }
 
+        // Get and parse the exclude-pages from the plugin parameters
+        $exclude_pages = $this->params->get('exclude_pages');
+        $exclude_pages = $this->textToArray($exclude_pages);
+
+        // Don't do anything if the current component is excluded
+        if (!empty($exclude_pages)) {
+            foreach($exclude_pages as $exclude) {
+                if(stristr($current_path, $exclude)) {
+                    return;
+                }
+            }
+        }
+
         // Get and parse the custom-pages from the plugin parameters
         $custom_pages = $this->params->get('custom_pages');
         $custom_pages = $this->textToArray($custom_pages);
@@ -346,7 +359,7 @@ class plgSystemSSLRedirect extends JPlugin
         $return = array();
         foreach ($tmp as $index => $text) {
             $text = trim($text);
-            if (!empty($text)) {
+            if (!empty($text) && !in_array($text, array(','))) {
                 $return[$index] = $text;
             }
         }
