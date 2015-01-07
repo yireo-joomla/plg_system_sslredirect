@@ -23,43 +23,57 @@
     <config>
         <fields addfieldpath="plugins/system/sslredirect/fields" name="params">
             <fieldset name="basic">
-                <field name="menu_items" type="menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_MENUITEMS" description="PLG_SYSTEM_SSLREDIRECT_MENUITEMS_DESC" />
-                <field name="components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_COMPONENTS" description="PLG_SYSTEM_SSLREDIRECT_COMPONENTS_DESC">
+                <field name="menu_items" type="menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_MENUITEMS" 
+                    description="PLG_SYSTEM_SSLREDIRECT_MENUITEMS_DESC" />
+                <field name="components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_COMPONENTS" 
+                    description="PLG_SYSTEM_SSLREDIRECT_COMPONENTS_DESC">
+                    <option value="ALL">JALL</option>
                     <option value="">JNONE</option>
                 </field>
-                <field name="articles" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_ARTICLES" rows="10" cols="35" description="PLG_SYSTEM_SSLREDIRECT_ARTICLES_DESC" />
-                <field name="custom_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES" rows="10" cols="35" description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES_DESC" />
-                <field name="loggedin" type="list" default="-1" label="PLG_SYSTEM_SSLREDIRECT_LOGGEDIN" description="PLG_SYSTEM_SSLREDIRECT_LOGGEDIN_DESC">
+                <field name="articles" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_ARTICLES" rows="10" cols="35" 
+                    description="PLG_SYSTEM_SSLREDIRECT_ARTICLES_DESC" />
+                <field name="custom_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES" rows="10" cols="35" 
+                    description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES_DESC" />
+                <field name="loggedin" type="list" default="-1" label="PLG_SYSTEM_SSLREDIRECT_LOGGEDIN" 
+                    description="PLG_SYSTEM_SSLREDIRECT_LOGGEDIN_DESC">
                     <option value="-1">JIGNORE</option>
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
             </fieldset>
             <fieldset name="advanced">
-                <field name="custom_php" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP" rows="10" cols="35" description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP_DESC" />
-                <field name="exclude_components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS" description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS_DESC">
+                <field name="custom_php" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP" rows="10" cols="35" 
+                    description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP_DESC" />
+                <field name="exclude_components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS" 
+                    description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS_DESC">
                     <option value="">JNONE</option>
                 </field>
-                <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES" rows="10" cols="35" description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC" />
+                <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES" rows="10" cols="35" 
+                    description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC" />
             </fieldset>
             <fieldset name="system" label="PLG_SYSTEM_SSLREDIRECT_SYSTEM_FIELDSET_LABEL">
-                <field name="all" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL" description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
+                <field name="all" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL" 
+                    description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_nonssl" type="list" default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL" description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL_DESC">
+                <field name="redirect_nonssl" type="list" default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL" 
+                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_ssl" type="list" default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL" description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL_DESC">
+                <field name="redirect_ssl" type="list" default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL" 
+                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_admin" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN" description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN_DESC">
+                <field name="redirect_admin" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN"
+                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="hsts_header" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER" description="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER_DESC">
+                <field name="hsts_header" type="list" default="0" label="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER" 
+                    description="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
