@@ -38,7 +38,7 @@ class plgSystemSSLRedirect extends JPlugin
 
         // Redirect the backend
         if ($application->isAdmin() == true && $this->params->get('redirect_admin', 0) == 1) {
-            if ($uri->isSSL() == false) {
+            if ($this->isSSL() == false) {
                 $uri->setScheme('https');
                 $application->redirect($uri->toString());
                 return $application->close();
@@ -74,7 +74,7 @@ class plgSystemSSLRedirect extends JPlugin
         }
 
         // Redirect all pages
-        if ($this->params->get('all', 0) == 1 && $uri->isSSL() == false) {
+        if ($this->params->get('all', 0) == 1 && $this->isSSL() == false) {
             $uri->setScheme('https');
             $application->redirect($uri->toString());
             return $application->close();
@@ -146,7 +146,7 @@ class plgSystemSSLRedirect extends JPlugin
         }
 
         // When SSL is currently disabled
-        if ($uri->isSSL() == false && $this->params->get('redirect_nonssl', 1) == 1) {
+        if ($this->isSSL() == false && $this->params->get('redirect_nonssl', 1) == 1) {
 
             $redirect = false;
 
@@ -201,7 +201,7 @@ class plgSystemSSLRedirect extends JPlugin
             }
 
         // When SSL is currently enabled
-        } else if ($uri->isSSL() == true && $this->params->get('redirect_ssl', 1) == 1) {
+        } else if ($this->isSSL() == true && $this->params->get('redirect_ssl', 1) == 1) {
 
             // Determine whether to do a redirect
             $redirect = true;
@@ -365,5 +365,27 @@ class plgSystemSSLRedirect extends JPlugin
         }
 
         return $return;
+    }
+
+    /**
+     * Helper-method to convert a string into array
+     *
+     * @access private
+     * @param $text string
+     * @return array
+     */
+    private function isSSL()
+    {
+        // Support for proxy headers
+        if (isset($_SERVER['X-FORWARDED-PROTO'])) {
+            if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $uri = JFactory::getURI();
+        return $uri->isSSL();
     }
 }
