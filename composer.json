@@ -1,5 +1,5 @@
 {
-    "name": "yireo/plg_system_sslredirect",
+    "name": "yireo/plg-system-sslredirect",
     "type": "joomla-extension",
     "license": "GPLv3",
     "description": "SSLRedirect plugin for Joomla"
