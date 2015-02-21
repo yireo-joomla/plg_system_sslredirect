@@ -37,8 +37,10 @@ class plgSystemSSLRedirect extends JPlugin
         $uri = JFactory::getURI();
 
         // Redirect the backend
-        if ($application->isAdmin() == true && $this->params->get('redirect_admin', 0) == 1) {
-            if ($this->isSSL() == false) {
+        if ($application->isAdmin() == true && $this->params->get('redirect_admin', 0) == 1)
+        {
+            if ($this->isSSL() == false)
+            {
                 $uri->setScheme('https');
                 $application->redirect($uri->toString());
                 return $application->close();
@@ -63,18 +65,21 @@ class plgSystemSSLRedirect extends JPlugin
         $Itemid = JRequest::getInt('Itemid');
 
         // Do not rewrite for anything else but the frontend
-        if ($application->isSite() == false) {
+        if ($application->isSite() == false)
+        {
             return false;
         }
 
         // Add HSTS header if enabled
-        if ($this->params->get('all', 0) == 1 && $this->params->get('hsts_header', 0) == 1) {
+        if ($this->params->get('all', 0) == 1 && $this->params->get('hsts_header', 0) == 1)
+        {
             $age = 10886400;
             header('Strict-Transport-Security: max-age='.$age.'; includeSubDomains; preload');
         }
 
         // Redirect all pages
-        if ($this->params->get('all', 0) == 1 && $this->isSSL() == false) {
+        if ($this->params->get('all', 0) == 1 && $this->isSSL() == false)
+        {
             $uri->setScheme('https');
             $application->redirect($uri->toString());
             return $application->close();
@@ -83,36 +88,47 @@ class plgSystemSSLRedirect extends JPlugin
         // Don't do anything if format=raw or tmpl=component
         $format = JRequest::getCmd('format');
         $tmpl = JRequest::getCmd('tmpl');
-        if ($format == 'raw' || $tmpl == 'component') {
+        if ($format == 'raw' || $tmpl == 'component')
+        {
             return;
         }
 
         // Get and parse the menu-items from the plugin parameters
         $menu_items = $this->params->get('menu_items');
-        if (empty($menu_items)) { 
+        if (empty($menu_items))
+        { 
             $menu_items = array();
-        } else if (!is_array($menu_items)) {
+        }
+        else if (!is_array($menu_items))
+        {
             $menu_items = array($menu_items);
         }
 
         // Get and parse the components from the plugin parameters
         $components = $this->params->get('components');
-        if (empty($components)) { 
+        if (empty($components))
+        { 
             $components= array();
-        } else if (!is_array($components)) {
+        }
+        else if (!is_array($components))
+        {
             $components = array($components);
         }
 
         // Get and parse the excluded components from the plugin parameters
         $exclude_components = $this->params->get('exclude_components');
-        if (empty($exclude_components)) { 
+        if (empty($exclude_components))
+        { 
             $exclude_components= array();
-        } else if (!is_array($exclude_components)) {
+        }
+        else if (!is_array($exclude_components))
+        {
             $exclude_components = array($exclude_components);
         }
 
         // Don't do anything if the current component is excluded
-        if (in_array(JRequest::getCmd('option'), $exclude_components)) {
+        if (in_array(JRequest::getCmd('option'), $exclude_components))
+        {
             return;
         }
 
@@ -121,9 +137,12 @@ class plgSystemSSLRedirect extends JPlugin
         $exclude_pages = $this->textToArray($exclude_pages);
 
         // Don't do anything if the current component is excluded
-        if (!empty($exclude_pages)) {
-            foreach($exclude_pages as $exclude) {
-                if(stristr($current_path, $exclude)) {
+        if (!empty($exclude_pages))
+        {
+            foreach($exclude_pages as $exclude)
+            {
+                if(stristr($current_path, $exclude))
+                {
                     return;
                 }
             }
@@ -139,76 +158,102 @@ class plgSystemSSLRedirect extends JPlugin
 
         // Evaluate custom PHP
         $selection = $this->params->get('custom_php');
-        if(!empty($selection)) {
+        if(!empty($selection))
+        {
             $passPHP = $this->passPHP($this, $this, $selection, 'include');
-        } else {
+        }
+        else
+        {
             $passPHP = false;
         }
 
         // When SSL is currently disabled
-        if ($this->isSSL() == false && $this->params->get('redirect_nonssl', 1) == 1) {
-
+        if ($this->isSSL() == false && $this->params->get('redirect_nonssl', 1) == 1)
+        {
             $redirect = false;
 
             // Do not redirect if this is POST-request 
             $post = JRequest::get('post');
-            if (is_array($post) && !empty($post)) {
+            if (is_array($post) && !empty($post))
+            {
                 $this->addDebug('Redirect enabled because of POST data');
                 $redirect = false;
 
             // Do not redirect with other API-calls
-            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api'))) {
+            }
+            else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api')))
+            {
                 $this->addDebug('Redirect enabled because of API controller');
                 $redirect = false;
 
-            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api'))) {
+            }
+            else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api')))
+            {
                 $this->addDebug('Redirect enabled because of API view');
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
-            } else if ($this->params->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0) { 
+            }
+            else if ($this->params->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0)
+            { 
                 $this->addDebug('Redirect enabled because user is logged in');
                 $redirect = true;
 
             // Determine whether to do a redirect based on the menu-items
-            } else if (in_array($Itemid, $menu_items)) {
+            }
+            else if (in_array($Itemid, $menu_items))
+            {
+                $this->addDebug('Redirect enabled because Menu-Item included');
                 $redirect = true;
 
             // Determine whether to do a redirect based on the menu-items
-            } else if (JRequest::getCmd('option') == 'com_content' && JRequest::getCmd('view') == 'article' 
-                && !empty($article_ids) && in_array(JRequest::getInt('id'), $article_ids)) {
-                $this->addDebug('Redirect enabled because article exclude');
+            }
+            else if (JRequest::getCmd('option') == 'com_content' && JRequest::getCmd('view') == 'article' 
+                && !empty($article_ids) && in_array(JRequest::getInt('id'), $article_ids))
+            {
+                $this->addDebug('Redirect enabled because article included');
                 $redirect = true;
 
             // Determine whether to do a redirect based on the component
-            } else if (in_array('ALL', $components)) {
+            }
+            else if (in_array('ALL', $components))
+            {
                 $this->addDebug('Redirect enabled because component is ALL');
                 $redirect = true;
 
             // Determine whether to do a redirect based on the component
-            } else if (in_array(JRequest::getCmd('option'), $components)) {
+            }
+            else if (in_array(JRequest::getCmd('option'), $components))
+            {
                 $this->addDebug('Redirect enabled because component include');
                 $redirect = true;
 
             // Determine whether to do a redirect based on the custom-pages
-            } else if (!empty($custom_pages) && !empty($current_path)) {
-                foreach ($custom_pages as $custom_page) {
+            }
+            else if (!empty($custom_pages) && !empty($current_path))
+            {
+                foreach ($custom_pages as $custom_page)
+                {
                     $pos = strpos($current_path, $custom_page);
-                    if ($pos !== false && ($pos == 0 || $pos == 1)) {
-                        $this->addDebug('Redirect enabled because component exclude');
+                    if ($pos !== false && ($pos == 0 || $pos == 1))
+                    {
+                        $this->addDebug('Redirect enabled because component include');
                         $redirect = true;
                         break;
                     }
                 }
 
             // Determine whether to do a redirect based on custom PHP
-            } else if ($passPHP == true) {
+            }
+            else if ($passPHP == true)
+            {
                 $this->addDebug('Redirect enabled because of PHP expression');
                 $redirect = true;
             }
 
             // Redirect to SSL
-            if ($redirect == true) {
+            if ($redirect == true)
+            {
                 $this->addDebug('Redirect to SSL', true);
                 $uri->setScheme('https');
                 $application->redirect($uri->toString());
@@ -217,52 +262,78 @@ class plgSystemSSLRedirect extends JPlugin
             $this->addDebug('Not changing non-SSL state', true);
 
         // When SSL is currently enabled
-        } else if ($this->isSSL() == true && $this->params->get('redirect_ssl', 1) == 1) {
+        }
+        else if ($this->isSSL() == true && $this->params->get('redirect_ssl', 1) == 1)
+        {
 
             // Determine whether to do a redirect
             $redirect = true;
 
             // Do not redirect if this is POST-request 
             $post = JRequest::get('post');
-            if (is_array($post) && !empty($post)) {
+            if (is_array($post) && !empty($post))
+            {
                 $this->addDebug('Redirect disabled because of POST data');
                 $redirect = false;
 
             // Do not redirect with other API-calls
-            } else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api'))) {
+            }
+            else if (in_array(JRequest::getCmd('controller'), array('jsonrpc', 'ajax', 'api')))
+            {
                 $this->addDebug('Redirect disabled because of API controller');
                 $redirect = false;
 
-            } else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api'))) {
+            }
+            else if (in_array(JRequest::getCmd('view'), array('jsonrpc', 'ajax', 'api')))
+            {
                 $this->addDebug('Redirect disabled because of API view');
                 $redirect = false;
 
             // Determine whether to do a redirect based on whether an user is logged in
-            } else if ($this->params->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0) { 
+            }
+            else if ($this->params->get('loggedin', -1) == 1 && JFactory::getUser()->guest == 0)
+            { 
                 $this->addDebug('Redirect disabled because of user is logged in');
                 $redirect = false;
 
             // Determine whether to do a redirect based on the menu-items
-            } else if (in_array($Itemid, $menu_items)) {
-                $this->addDebug('Redirect disabled because of Menu-Item excludes this page');
+            }
+            else if (in_array($Itemid, $menu_items))
+            {
+                $this->addDebug('Redirect disabled because of Menu-Item includes this page');
                 $redirect = false;
 
             // Determine whether to do a redirect based on the menu-items
-            } else if (JRequest::getCmd('option') == 'com_content' && JRequest::getCmd('view') == 'article' 
-                && !empty($article_ids) && in_array(JRequest::getInt('id'), $article_ids)) {
-                $this->addDebug('Redirect disabled because of article-list excludes this page');
+            }
+            else if (JRequest::getCmd('option') == 'com_content' && JRequest::getCmd('view') == 'article' 
+                && !empty($article_ids) && in_array(JRequest::getInt('id'), $article_ids))
+            {
+                $this->addDebug('Redirect disabled because of article-list includes this page');
                 $redirect = false;
 
             // Determine whether to do a redirect based on the component
-            } else if (in_array(JRequest::getCmd('option'), $components)) {
-                $this->addDebug('Redirect disabled because of component-list excludes this page');
+            }
+            else if (in_array('ALL', $components))
+            {
+                $this->addDebug('Redirect disabled because of component is set to ALL');
+                $redirect = false;
+
+            // Determine whether to do a redirect based on the component
+            }
+            else if (in_array(JRequest::getCmd('option'), $components))
+            {
+                $this->addDebug('Redirect disabled because of component-list includes this page');
                 $redirect = false;
 
             // Determine whether to do a redirect based on the custom-pages
-            } else if (!empty($custom_pages) && !empty($current_path)) {
-                foreach ($custom_pages as $custom_page) {
+            }
+            else if (!empty($custom_pages) && !empty($current_path))
+            {
+                foreach ($custom_pages as $custom_page)
+                {
                     $pos = strpos($current_path, $custom_page);
-                    if ($pos !== false && ($pos == 0 || $pos == 1)) {
+                    if ($pos !== false && ($pos == 0 || $pos == 1))
+                    {
                         $this->addDebug('Redirect disabled because of custom page '.$custom_page);
                         $redirect = false;
                         break;
@@ -270,13 +341,16 @@ class plgSystemSSLRedirect extends JPlugin
                 }
             
             // Determine whether to do a redirect based on custom PHP
-            } else if ($passPHP == true) {
+            }
+            else if ($passPHP == true)
+            {
                 $this->addDebug('Redirect disabled because of PHP expression');
                 $redirect = false;
             }
 
             // Redirect to non-SSL
-            if ($redirect) {
+            if ($redirect)
+            {
                 $this->addDebug('Redirect to non-SSL', true);
                 $uri->setScheme('http');
                 $application->redirect($uri->toString());
@@ -301,7 +375,8 @@ class plgSystemSSLRedirect extends JPlugin
      */
     private function passPHP(&$main, &$params, $selection = array(), $assignment = 'all', $article = 0)
     {
-        if (!is_array($selection)) {
+        if (!is_array($selection))
+        {
             $selection = array($selection);
         }
 
@@ -419,7 +494,7 @@ class plgSystemSSLRedirect extends JPlugin
 
     private function addDebug($msg, $die = false)
     {
-        if($_SERVER['REMOTE_ADDR'] != 'TEST') {
+        if($_SERVER['REMOTE_ADDR'] != 'tmp') {
             return false;
         }
 
