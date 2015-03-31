@@ -42,7 +42,7 @@ class plgSystemSSLRedirect extends JPlugin
             if ($this->isSSL() == false)
             {
                 $uri->setScheme('https');
-                $application->redirect($uri->toString());
+                $application->redirect($uri->toString(), $this->params->get('http_status', 301));
                 return $application->close();
             }
         }
@@ -81,7 +81,7 @@ class plgSystemSSLRedirect extends JPlugin
         if ($this->params->get('all', 0) == 1 && $this->isSSL() == false)
         {
             $uri->setScheme('https');
-            $application->redirect($uri->toString());
+            $application->redirect($uri->toString(), $this->params->get('http_status', 301));
             return $application->close();
         }
 
@@ -256,7 +256,7 @@ class plgSystemSSLRedirect extends JPlugin
             {
                 $this->addDebug('Redirect to SSL', true);
                 $uri->setScheme('https');
-                $application->redirect($uri->toString());
+                $application->redirect($uri->toString(), $this->params->get('http_status', 301));
             }
                 
             $this->addDebug('Not changing non-SSL state', true);
@@ -353,7 +353,7 @@ class plgSystemSSLRedirect extends JPlugin
             {
                 $this->addDebug('Redirect to non-SSL', true);
                 $uri->setScheme('http');
-                $application->redirect($uri->toString());
+                $application->redirect($uri->toString(), $this->params->get('http_status', 301));
                 return $application->close();
             }
 
