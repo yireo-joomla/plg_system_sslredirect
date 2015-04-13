@@ -533,9 +533,11 @@ class PlgSystemSSLRedirect extends JPlugin
 		}
 
 		$return = array();
+
 		foreach ($tmp as $index => $text)
 		{
 			$text = trim($text);
+
 			if (!empty($text) && !in_array($text, array(',')))
 			{
 				$return[$index] = $text;
