@@ -629,9 +629,12 @@ class PlgSystemSSLRedirect extends JPlugin
 			$httpStatus = 'HTTP/1.1 303 See other';
 		}
 
-		$application = JFactory::getApplication();
-		$application->redirect($url);
 		header($httpStatus, true);
+		header('Location: ' . $url);
+		header('Content-Type: text/html; charset=utf-8');
+		
+        $application = JFactory::getApplication();
+		$application->close();
 		exit;
 	}
 }
