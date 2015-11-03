@@ -183,7 +183,7 @@ class PlgSystemSSLRedirect extends JPlugin
 			$redirect = false;
 
 			// Do not redirect if this is POST-request
-			$post = $application->input->get('post');
+			$post = $application->input->post->getArray();
 
 			if (is_array($post) && !empty($post))
 			{
@@ -285,7 +285,7 @@ class PlgSystemSSLRedirect extends JPlugin
 			$redirect = true;
 
 			// Do not redirect if this is POST-request
-			$post = $application->input->get('post');
+			$post = $application->input->post->getArray();
 
 			if (is_array($post) && !empty($post))
 			{
