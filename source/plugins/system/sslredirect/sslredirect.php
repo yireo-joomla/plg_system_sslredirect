@@ -4,7 +4,7 @@
  *
  * @author      Yireo (info@yireo.com)
  * @package     Joomla!
- * @copyright   Copyright 2015
+ * @copyright   Copyright 2016
  * @license     GNU Public License
  * @link        http://www.yireo.com
  * @contributor Jisse Reitsma, Yireo (main code)
@@ -72,6 +72,16 @@ class PlgSystemSSLRedirect extends JPlugin
 		{
 			return false;
 		}
+
+		// Get and parse the exclude-hosts from the plugin parameters
+		$exclude_hosts = $this->params->get('exclude_hosts');
+		$exclude_hosts = $this->textToArray($exclude_hosts);
+        $current_host = $_SERVER['HTTP_HOST'];
+
+        if (!empty($exclude_hosts) && in_array($current_host, $exclude_hosts))
+        {
+            return false;
+        }
 
 		// Add HSTS header if enabled
 		$this->addHtstHeader();

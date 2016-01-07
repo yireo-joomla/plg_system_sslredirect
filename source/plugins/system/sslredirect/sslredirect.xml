@@ -2,12 +2,12 @@
 <extension version="3.3" type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SSLREDIRECT</name>
     <author>Yireo</author>
-    <creationDate>July 2015</creationDate>
-    <copyright>Copyright 2015 Yireo.com. All rights reserved.</copyright>
+    <creationDate>January 2016</creationDate>
+    <copyright>Copyright 2016 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.9.17</version>
+    <version>0.9.18</version>
     <description>PLG_SYSTEM_SSLREDIRECT_DESCRIPTION</description>
 
     <files>
@@ -48,6 +48,8 @@
                 </field>
                 <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES" rows="10" cols="35" 
                     description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC" />
+                <field name="exclude_hosts" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS" rows="3" cols="35" 
+                    description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS_DESC" />
                 <field name="custom_php" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP" rows="10" cols="35"
                        description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP_DESC" />
             </fieldset>
