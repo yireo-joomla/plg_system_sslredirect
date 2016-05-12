@@ -190,14 +190,38 @@ class PlgSystemSSLRedirect extends JPlugin
 		{
 			if ($this->allowRedirectFromSslToNonSsl() == false)
 			{
-				$this->helper->addDebug('Redirect enabled for all pages but not this one');
+				$this->helper->addDebug('Redirect enabled for all pages');
 
-				return false;
+				return true;
 			}
+		}
 
-			$this->helper->addDebug('Redirect enabled for all pages');
+		if ($this->matchNonSslMenuItems())
+		{
+			$this->helper->addDebug('Redirect disabled because Menu-Item is matched');
 
-			return true;
+			return false;
+		}
+
+		if ($this->matchNonSslArticle())
+		{
+			$this->helper->addDebug('Redirect disabled because article is matched');
+
+			return false;
+		}
+
+		if ($this->matchNonSslComponents())
+		{
+			$this->helper->addDebug('Redirect disabled because component is matched');
+
+			return false;
+		}
+
+		if ($this->matchNonSslPages())
+		{
+			$this->helper->addDebug('Redirect disabled because current path is matched');
+
+			return false;
 		}
 
 		if ($this->matchLoggedInUser())
@@ -214,25 +238,11 @@ class PlgSystemSSLRedirect extends JPlugin
 			return true;
 		}
 
-		if ($this->matchNonSslMenuItems())
-		{
-			$this->helper->addDebug('Redirect disabled because Menu-Item is matched');
-
-			return false;
-		}
-
 		if ($this->matchSslArticle())
 		{
 			$this->helper->addDebug('Redirect enabled because article is matched');
 
 			return true;
-		}
-
-		if ($this->matchNonSslArticle())
-		{
-			$this->helper->addDebug('Redirect disabled because article is matched');
-
-			return false;
 		}
 
 		if ($this->matchSslComponents())
@@ -242,25 +252,11 @@ class PlgSystemSSLRedirect extends JPlugin
 			return true;
 		}
 
-		if ($this->matchNonSslComponents())
-		{
-			$this->helper->addDebug('Redirect disabled because component is matched');
-
-			return false;
-		}
-
 		if ($this->matchSslPages())
 		{
 			$this->helper->addDebug('Redirect enabled because current path is matched');
 
 			return true;
-		}
-
-		if ($this->matchNonSslPages())
-		{
-			$this->helper->addDebug('Redirect disabled because current path is matched');
-
-			return false;
 		}
 
 		$matchPhp = $this->matchPHP();
@@ -303,13 +299,6 @@ class PlgSystemSSLRedirect extends JPlugin
 			return false;
 		}
 
-		if ($this->matchNonSslArticle())
-		{
-			$this->helper->addDebug('Redirect enabled because article is matched');
-
-			return true;
-		}
-
 		if ($this->matchSslComponents())
 		{
 			$this->helper->addDebug('Redirect disabled because component is matched');
@@ -317,25 +306,11 @@ class PlgSystemSSLRedirect extends JPlugin
 			return false;
 		}
 
-		if ($this->matchNonSslComponents())
-		{
-			$this->helper->addDebug('Redirect enabled because component is matched');
-
-			return true;
-		}
-
 		if ($this->matchSslPages())
 		{
 			$this->helper->addDebug('Redirect disabled because current path is matched');
 
 			return false;
-		}
-
-		if ($this->matchNonSslPages())
-		{
-			$this->helper->addDebug('Redirect enabled because current path is matched');
-
-			return true;
 		}
 
 		$matchPhp = $this->matchPHP();
@@ -347,7 +322,35 @@ class PlgSystemSSLRedirect extends JPlugin
 			return false;
 		}
 
-		return true;
+		if ($this->matchNonSslMenuItems())
+		{
+			$this->helper->addDebug('Redirect enabled because Menu-Item is matched');
+
+			return true;
+		}
+
+		if ($this->matchNonSslArticle())
+		{
+			$this->helper->addDebug('Redirect enabled because article is matched');
+
+			return true;
+		}
+
+		if ($this->matchNonSslComponents())
+		{
+			$this->helper->addDebug('Redirect enabled because component is matched');
+
+			return true;
+		}
+
+		if ($this->matchNonSslPages())
+		{
+			$this->helper->addDebug('Redirect enabled because current path is matched');
+
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
