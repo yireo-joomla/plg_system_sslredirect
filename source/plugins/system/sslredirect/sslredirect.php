@@ -43,7 +43,7 @@ class PlgSystemSSLRedirect extends JPlugin
 	public function onAfterInitialise()
 	{
 		// Get system variables
-		$uri = JURI::getInstance();
+		$uri = JUri::getInstance();
 		$this->loadHelper();
 
 		// Redirect the backend
@@ -95,7 +95,7 @@ class PlgSystemSSLRedirect extends JPlugin
 	{
 		if ($this->allowRedirectFromSslToNonSsl())
 		{
-			$uri = JURI::getInstance();
+			$uri = JUri::getInstance();
 			$uri->setScheme('http');
 			$this->helper->addDebug('Redirect to non-SSL: ' . $uri->toString());
 			$this->redirect($uri->toString());
@@ -113,7 +113,7 @@ class PlgSystemSSLRedirect extends JPlugin
 	{
 		if ($this->allowRedirectFromNonSslToSsl())
 		{
-			$uri = JURI::getInstance();
+			$uri = JUri::getInstance();
 			$uri->setScheme('https');
 			$this->helper->addDebug('Redirect to SSL: ' . $uri->toString());
 			$this->redirect($uri->toString());
@@ -188,6 +188,15 @@ class PlgSystemSSLRedirect extends JPlugin
 	{
 		if ($this->matchAll())
 		{
+			if ($this->allowRedirectFromSslToNonSsl() == false)
+			{
+				$this->helper->addDebug('Redirect enabled for all pages but not this one');
+
+				return false;
+			}
+
+			$this->helper->addDebug('Redirect enabled for all pages');
+
 			return true;
 		}
 
@@ -273,11 +282,6 @@ class PlgSystemSSLRedirect extends JPlugin
 	 */
 	private function allowRedirectFromSslToNonSsl()
 	{
-		if ($this->matchAll())
-		{
-			return false;
-		}
-
 		if ($this->matchLoggedInUser())
 		{
 			$this->helper->addDebug('Redirect disabled because of user is logged in');
@@ -673,7 +677,7 @@ class PlgSystemSSLRedirect extends JPlugin
 	 */
 	private function getCurrentPath()
 	{
-		$uri = JURI::getInstance();
+		$uri = JUri::getInstance();
 
 		return $uri->toString(array('path', 'query', 'fragment'));
 	}

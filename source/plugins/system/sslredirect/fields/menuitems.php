@@ -22,7 +22,7 @@ include_once JPATH_LIBRARIES . '/joomla/form/fields/list.php';
 /**
  * Form Field-class for selecting multiple menu-items
  */
-class JFormFieldMenuItems extends JFormFieldList
+class YireoFormFieldMenuItems extends JFormFieldList
 {
 	public $type = 'MenuItems';
 

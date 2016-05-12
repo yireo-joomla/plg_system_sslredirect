@@ -53,7 +53,7 @@ class SSLRedirectHelper
 			return false;
 		}
 
-		header('X-SSL-Redirect: ' . $msg);
+		header('X-SSL-Redirect: ' . $msg, false);
 	}
 
 	/**

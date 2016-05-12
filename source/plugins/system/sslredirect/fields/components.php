@@ -22,7 +22,7 @@ include_once JPATH_LIBRARIES . '/joomla/form/fields/list.php';
 /**
  * Form Field-class for selecting a component
  */
-class JFormFieldComponents extends JFormFieldList
+class YireoFormFieldComponents extends JFormFieldList
 {
 	/*
 	 * Form field type

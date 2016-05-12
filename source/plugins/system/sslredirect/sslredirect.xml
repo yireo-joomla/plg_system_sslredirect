@@ -24,42 +24,58 @@
     <config>
         <fields addfieldpath="plugins/system/sslredirect/fields" name="params">
             <fieldset name="ssl" label="PLG_SYSTEM_SSLREDIRECT_SSL_FIELDSET_LABEL">
-                <field name="menu_items" type="menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_MENUITEMS" 
-                    description="PLG_SYSTEM_SSLREDIRECT_MENUITEMS_DESC" />
-                <field name="components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_COMPONENTS" 
-                    description="PLG_SYSTEM_SSLREDIRECT_COMPONENTS_DESC">
-                    <option value="ALL">JALL</option>
-                    <option value="">JNONE</option>
+                <field name="menu_items" type="yireo.menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_MENUITEMS"
+                       description="PLG_SYSTEM_SSLREDIRECT_MENUITEMS_DESC">
+                    <option value="">JIGNORE</option>
                 </field>
-                <field name="articles" type="articles" default="" label="PLG_SYSTEM_SSLREDIRECT_ARTICLES" rows="10" cols="35"
-                    description="PLG_SYSTEM_SSLREDIRECT_ARTICLES_DESC" />
-                <field name="custom_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES" rows="10" cols="35" 
-                    description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES_DESC" />
+                <field name="components" type="yireo.components" default="" label="PLG_SYSTEM_SSLREDIRECT_COMPONENTS"
+                       description="PLG_SYSTEM_SSLREDIRECT_COMPONENTS_DESC">
+                    <option value="ALL">JALL</option>
+                    <option value="">JIGNORE</option>
+                </field>
+                <field name="articles" type="articles" default="" label="PLG_SYSTEM_SSLREDIRECT_ARTICLES" rows="10"
+                       cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_ARTICLES_DESC"/>
+                <field name="custom_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES"
+                       rows="10" cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PAGES_DESC"/>
             </fieldset>
             <fieldset name="nonssl" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_FIELDSET_LABEL">
-                <field name="nonssl_menu_items" type="menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_MENUITEMS"
-                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_MENUITEMS_DESC" />
-                <field name="nonssl_components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_COMPONENTS"
+                <field name="nonssl_menu_items" type="yireo.menuitems" default=""
+                       label="PLG_SYSTEM_SSLREDIRECT_NONSSL_MENUITEMS"
+                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_MENUITEMS_DESC">
+                    <option value="">JIGNORE</option>
+                </field>
+                <field name="nonssl_components" type="yireo.components" default=""
+                       label="PLG_SYSTEM_SSLREDIRECT_NONSSL_COMPONENTS"
                        description="PLG_SYSTEM_SSLREDIRECT_NONSSL_COMPONENTS_DESC">
                     <option value="ALL">JALL</option>
-                    <option value="">JNONE</option>
+                    <option value="">JIGNORE</option>
                 </field>
-                <field name="nonssl_articles" type="articles" default="" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_ARTICLES" rows="10" cols="35"
-                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_ARTICLES_DESC" />
-                <field name="nonssl_custom_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_CUSTOM_PAGES" rows="10" cols="35"
-                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_CUSTOM_PAGES_DESC" />
+                <field name="nonssl_articles" type="articles" default="" label="PLG_SYSTEM_SSLREDIRECT_NONSSL_ARTICLES"
+                       rows="10" cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_ARTICLES_DESC"/>
+                <field name="nonssl_custom_pages" type="textarea" default=""
+                       label="PLG_SYSTEM_SSLREDIRECT_NONSSL_CUSTOM_PAGES" rows="10" cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_NONSSL_CUSTOM_PAGES_DESC"/>
             </fieldset>
             <fieldset name="exclude" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_FIELDSET_LABEL">
-                <field name="exclude_menu_items" type="menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_MENUITEMS"
-                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_MENUITEMS_DESC" />
-                <field name="exclude_components" type="components" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS"
-                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS_DESC">
-                    <option value="">JNONE</option>
+                <field name="exclude_menu_items" type="yireo.menuitems" default=""
+                       label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_MENUITEMS"
+                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_MENUITEMS_DESC">
+                    <option value="">JIGNORE</option>
                 </field>
-                <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES" rows="10" cols="35"
-                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC" />
-                <field name="exclude_hosts" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS" rows="3" cols="35"
-                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS_DESC" />
+                <field name="exclude_components" type="yireo.components" default=""
+                       label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS"
+                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_COMPONENTS_DESC">
+                    <option value="">JIGNORE</option>
+                </field>
+                <field name="exclude_pages" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES"
+                       rows="10" cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_PAGES_DESC"/>
+                <field name="exclude_hosts" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS"
+                       rows="3" cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_EXCLUDE_HOSTS_DESC"/>
             </fieldset>
             <fieldset name="advanced">
                 <field name="loggedin" type="list" default="-1" label="PLG_SYSTEM_SSLREDIRECT_LOGGEDIN"
@@ -68,42 +84,47 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="custom_php" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP" rows="10" cols="35"
-                       description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP_DESC" />
-                <field name="debug" type="radio" class="btn-group"  default="0" label="PLG_SYSTEM_SSLREDIRECT_DEBUG"
+                <field name="custom_php" type="textarea" default="" label="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP" rows="10"
+                       cols="35"
+                       description="PLG_SYSTEM_SSLREDIRECT_CUSTOM_PHP_DESC"/>
+                <field name="debug" type="radio" class="btn-group" default="0" label="PLG_SYSTEM_SSLREDIRECT_DEBUG"
                        description="PLG_SYSTEM_SSLREDIRECT_DEBUG_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
             </fieldset>
             <fieldset name="system" label="PLG_SYSTEM_SSLREDIRECT_SYSTEM_FIELDSET_LABEL">
-                <field name="all" type="radio" class="btn-group"  default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL"
-                    description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
+                <field name="all" type="radio" class="btn-group" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL"
+                       description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_nonssl" type="radio" class="btn-group"  default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL"
-                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL_DESC">
+                <field name="redirect_nonssl" type="radio" class="btn-group" default="1"
+                       label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL"
+                       description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_ssl" type="radio" class="btn-group"  default="1" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL"
-                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL_DESC">
+                <field name="redirect_ssl" type="radio" class="btn-group" default="1"
+                       label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL"
+                       description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_SSL_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="redirect_admin" type="radio" class="btn-group"  default="0" label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN"
-                    description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN_DESC">
+                <field name="redirect_admin" type="radio" class="btn-group" default="0"
+                       label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN"
+                       description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_ADMIN_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="hsts_header" type="radio" class="btn-group"  default="0" label="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER"
-                    description="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER_DESC">
+                <field name="hsts_header" type="radio" class="btn-group" default="0"
+                       label="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER"
+                       description="PLG_SYSTEM_SSLREDIRECT_HSTS_HEADER_DESC">
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
-                <field name="http_status" type="list" default="301" label="PLG_SYSTEM_SSLREDIRECT_HTTP_STATUS" 
-                    description="PLG_SYSTEM_SSLREDIRECT_HTTP_STATUS_DESC">
+                <field name="http_status" type="list" default="301" label="PLG_SYSTEM_SSLREDIRECT_HTTP_STATUS"
+                       description="PLG_SYSTEM_SSLREDIRECT_HTTP_STATUS_DESC">
                     <option value="301">301</option>
                     <option value="302">302</option>
                     <option value="303">303</option>
@@ -114,7 +135,9 @@
     </config>
 
     <updateservers>
-        <server type="extension" priority="1" name="plg_system_sslredirect">https://www.yireo.com/updates/plg_system_sslredirect.xml</server>
+        <server type="extension" priority="1" name="plg_system_sslredirect">
+            https://www.yireo.com/updates/plg_system_sslredirect.xml
+        </server>
     </updateservers>
 
 </extension>
