@@ -260,12 +260,9 @@ class PlgSystemSSLRedirect extends JPlugin
 
 		if ($this->matchAll())
 		{
-			if ($this->allowRedirectFromSslToNonSsl() == false)
-			{
-				$this->helper->addDebug('Redirect enabled for all pages');
+			$this->helper->addDebug('Redirect enabled for all pages');
 
-				return true;
-			}
+			return true;
 		}
 
 		return false;
@@ -619,15 +616,31 @@ class PlgSystemSSLRedirect extends JPlugin
 
 	/**
 	 * Add the HTST header if enabled
+	 *
+	 * @return bool
 	 */
 	private function addHtstHeader()
 	{
-		// Add HSTS header if enabled
-		if ((bool) $this->params->get('all', 0) && (bool) $this->params->get('hsts_header', 0))
+		if ((bool) $this->params->get('all', 0) == false)
 		{
-			$age = 10886400;
-			header('Strict-Transport-Security: max-age=' . $age . '; includeSubDomains; preload');
+			return false;
 		}
+
+		if ((bool) $this->params->get('hsts_header', 0) == false)
+		{
+			return false;
+		}
+
+		$age = $this->params->get('hsts_age', 1209600);
+		$preload = null;
+
+		if ($age > 0)
+		{
+			$preload = '; preload';
+		}
+
+		header('Strict-Transport-Security: max-age=' . $age . $preload);
+		return true;
 	}
 
 	/**
