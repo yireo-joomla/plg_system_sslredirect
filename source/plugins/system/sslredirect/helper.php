@@ -236,4 +236,21 @@ class SSLRedirectHelper
 
 		return false;
 	}
+
+	/**
+	 * Load an article by ID
+	 *
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function getArticleById($id)
+	{
+		/** @var $model ContentModelArticle */
+		require_once JPATH_SITE . '/components/com_content/models/article.php';
+		$model = JModel::getInstance('article', 'contentModel');
+		$article = $model->getItem($id);
+
+		return $article;
+	}
 }

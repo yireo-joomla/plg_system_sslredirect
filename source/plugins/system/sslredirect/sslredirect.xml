@@ -2,12 +2,12 @@
 <extension version="3.3" type="plugin" group="system" method="upgrade">
     <name>PLG_SYSTEM_SSLREDIRECT</name>
     <author>Yireo</author>
-    <creationDate>February 2016</creationDate>
+    <creationDate>May 2016</creationDate>
     <copyright>Copyright 2016 Yireo.com. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
     <authorEmail>info@yireo.com</authorEmail>
     <authorUrl>www.yireo.com</authorUrl>
-    <version>0.11.1</version>
+    <version>0.11.2</version>
     <description>PLG_SYSTEM_SSLREDIRECT_DESCRIPTION</description>
 
     <files>
@@ -23,6 +23,13 @@
 
     <config>
         <fields addfieldpath="plugins/system/sslredirect/fields" name="params">
+            <fieldset name="basic">
+                <field name="all" type="radio" class="btn-group" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL"
+                       description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
+                    <option value="0">PLG_SYSTEM_SSLREDIRECT_ALL_OPTION_0</option>
+                    <option value="1">PLG_SYSTEM_SSLREDIRECT_ALL_OPTION_1</option>
+                </field>
+            </fieldset>
             <fieldset name="ssl" label="PLG_SYSTEM_SSLREDIRECT_SSL_FIELDSET_LABEL">
                 <field name="menu_items" type="yireo.menuitems" default="" label="PLG_SYSTEM_SSLREDIRECT_MENUITEMS"
                        description="PLG_SYSTEM_SSLREDIRECT_MENUITEMS_DESC">
@@ -94,11 +101,6 @@
                 </field>
             </fieldset>
             <fieldset name="system" label="PLG_SYSTEM_SSLREDIRECT_SYSTEM_FIELDSET_LABEL">
-                <field name="all" type="radio" class="btn-group" default="0" label="PLG_SYSTEM_SSLREDIRECT_ALL"
-                       description="PLG_SYSTEM_SSLREDIRECT_ALL_DESC">
-                    <option value="0">JNO</option>
-                    <option value="1">JYES</option>
-                </field>
                 <field name="redirect_nonssl" type="radio" class="btn-group" default="1"
                        label="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL"
                        description="PLG_SYSTEM_SSLREDIRECT_REDIRECT_NONSSL_DESC">

@@ -186,16 +186,6 @@ class PlgSystemSSLRedirect extends JPlugin
 	 */
 	private function allowRedirectFromNonSslToSsl()
 	{
-		if ($this->matchAll())
-		{
-			if ($this->allowRedirectFromSslToNonSsl() == false)
-			{
-				$this->helper->addDebug('Redirect enabled for all pages');
-
-				return true;
-			}
-		}
-
 		if ($this->matchNonSslMenuItems())
 		{
 			$this->helper->addDebug('Redirect disabled because Menu-Item is matched');
@@ -266,6 +256,16 @@ class PlgSystemSSLRedirect extends JPlugin
 			$this->helper->addDebug('Redirect enabled because of PHP expression');
 
 			return true;
+		}
+
+		if ($this->matchAll())
+		{
+			if ($this->allowRedirectFromSslToNonSsl() == false)
+			{
+				$this->helper->addDebug('Redirect enabled for all pages');
+
+				return true;
+			}
 		}
 
 		return false;
@@ -350,6 +350,13 @@ class PlgSystemSSLRedirect extends JPlugin
 			return true;
 		}
 
+		if ($this->matchAll() == false)
+		{
+			$this->helper->addDebug('Redirect enabled for all pages');
+
+			return true;
+		}
+
 		return false;
 	}
 
@@ -409,7 +416,7 @@ class PlgSystemSSLRedirect extends JPlugin
 
 		return $this->matchMenuItems($menuItems);
 	}
-	
+
 	/**
 	 * Match whether the current Itemid is present in an array of Menu Items
 	 *
@@ -646,7 +653,7 @@ class PlgSystemSSLRedirect extends JPlugin
 
 		return $menuItems;
 	}
-	
+
 	/**
 	 * Return the list of parameter-based components
 	 *
@@ -723,7 +730,7 @@ class PlgSystemSSLRedirect extends JPlugin
 
 			if (!$article && !(strpos($php, '$article') === false) && $main->_params->option == 'com_content' && $main->_params->view == 'article')
 			{
-				$article = $this->getArticleById($main->_params->id);
+				$article = $this->helper->getArticleById($main->_params->id);
 			}
 
 			if (!isset($Itemid))
@@ -787,30 +794,13 @@ class PlgSystemSSLRedirect extends JPlugin
 	}
 
 	/**
-	 * Load an article by ID
-	 *
-	 * @param $id
-	 *
-	 * @return mixed
-	 */
-	private function getArticleById($id)
-	{
-		/** @var $model ContentModelArticle */
-		require_once JPATH_SITE . '/components/com_content/models/article.php';
-		$model = JModel::getInstance('article', 'contentModel');
-		$article = $model->getItem($id);
-
-		return $article;
-	}
-
-	/**
 	 * Helper method to redirect to a certain URL
 	 *
 	 * @param $url
 	 */
 	private function redirect($url)
 	{
-		$status = $this->params->get('http_status', 301);
+		$status     = $this->params->get('http_status', 301);
 		$httpStatus = $this->helper->getHeaderByStatus($status);
 
 		header($httpStatus, true);
