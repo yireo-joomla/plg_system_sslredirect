@@ -132,6 +132,12 @@
                     <option value="0">JNO</option>
                     <option value="1">JYES</option>
                 </field>
+                <field name="hsts_preload" type="radio" class="btn-group" default="0"
+                       label="PLG_SYSTEM_SSLREDIRECT_HSTS_PRELOAD"
+                       description="PLG_SYSTEM_SSLREDIRECT_HSTS_PRELOAD_DESC">
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
                 <field name="hsts_age" type="text" default="1209600"
                        label="PLG_SYSTEM_SSLREDIRECT_HSTS_AGE"
                        description="PLG_SYSTEM_SSLREDIRECT_HSTS_AGE_DESC" />

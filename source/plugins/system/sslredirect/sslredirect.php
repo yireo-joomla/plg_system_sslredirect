@@ -621,25 +621,21 @@ class PlgSystemSSLRedirect extends JPlugin
 	 */
 	private function addHtstHeader()
 	{
-		if ((bool) $this->params->get('all', 0) == false)
-		{
-			return false;
-		}
-
 		if ((bool) $this->params->get('hsts_header', 0) == false)
 		{
 			return false;
 		}
 
-		$age = $this->params->get('hsts_age', 1209600);
+		$age     = $this->params->get('hsts_age', 1209600);
 		$preload = null;
 
-		if ($age > 0)
+		if ((bool) $this->params->get('hsts_preload', 0))
 		{
 			$preload = '; preload';
 		}
 
 		header('Strict-Transport-Security: max-age=' . $age . $preload);
+
 		return true;
 	}
 
