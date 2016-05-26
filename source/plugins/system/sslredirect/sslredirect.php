@@ -68,7 +68,10 @@ class PlgSystemSSLRedirect extends JPlugin
 		}
 
 		// Add HSTS header if enabled
-		$this->addHtstHeader();
+		if ($this->app->isSite() == true)
+		{
+			$this->addHtstHeader();
+		}
 
 		// When SSL is currently disabled
 		if ($this->helper->isSSL() == false && $this->params->get('redirect_nonssl', 1) == 1)
