@@ -34,7 +34,7 @@ class SSLRedirectHelper
 	 */
 	public function __construct($params)
 	{
-		$this->app = JFactory::getApplication();
+		$this->app    = JFactory::getApplication();
 		$this->params = $params;
 	}
 
@@ -172,7 +172,6 @@ class SSLRedirectHelper
 		return (bool) $uri->isSSL();
 	}
 
-
 	/**
 	 * Determine whether the current request is a POST request
 	 *
@@ -180,7 +179,14 @@ class SSLRedirectHelper
 	 */
 	public function isPostRequest()
 	{
-		$post = $this->app->input->post->getArray();
+		if ($this->isJoomla25())
+		{
+			$post = JRequest::get('post');
+		}
+		else
+		{
+			$post = $this->app->input->post->getArray();
+		}
 
 		if (is_array($post) && !empty($post))
 		{
@@ -198,7 +204,7 @@ class SSLRedirectHelper
 	public function isAjaxRequest()
 	{
 		$format = $this->app->input->getCmd('format');
-		$tmpl = $this->app->input->getCmd('tmpl');
+		$tmpl   = $this->app->input->getCmd('tmpl');
 
 		if ($format == 'raw' || $tmpl == 'component')
 		{
@@ -227,7 +233,7 @@ class SSLRedirectHelper
 	{
 		$exclude_hosts = $this->params->get('exclude_hosts');
 		$exclude_hosts = $this->textToArray($exclude_hosts);
-		$current_host = $_SERVER['HTTP_HOST'];
+		$current_host  = $_SERVER['HTTP_HOST'];
 
 		if (!empty($exclude_hosts) && in_array($current_host, $exclude_hosts))
 		{
@@ -248,9 +254,28 @@ class SSLRedirectHelper
 	{
 		/** @var $model ContentModelArticle */
 		require_once JPATH_SITE . '/components/com_content/models/article.php';
-		$model = JModel::getInstance('article', 'contentModel');
+		$model   = JModel::getInstance('article', 'contentModel');
 		$article = $model->getItem($id);
 
 		return $article;
+	}
+
+	/**
+	 * Check for Joomla 2.5 support
+	 *
+	 * @return bool
+	 */
+	public function isJoomla25()
+	{
+		JLoader::import('joomla.version');
+		$jversion = new JVersion;
+		$version  = $jversion->RELEASE;
+
+		if (version_compare($version, '2.5', 'eq'))
+		{
+			return true;
+		}
+
+		return false;
 	}
 }

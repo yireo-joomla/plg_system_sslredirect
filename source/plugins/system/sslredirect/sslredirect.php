@@ -46,6 +46,11 @@ class PlgSystemSSLRedirect extends JPlugin
 		$uri = JUri::getInstance();
 		$this->loadHelper();
 
+		if ($this->helper->isJoomla25())
+		{
+			$this->app = JFactory::getApplication();
+		}
+
 		// Redirect the backend
 		if ($this->app->isAdmin() == true && $this->params->get('redirect_admin', 0) == 1)
 		{
