@@ -167,7 +167,7 @@ class SSLRedirectHelper
 			return false;
 		}
 
-		$uri = JFactory::getURI();
+		$uri = JUri::getInstance();
 
 		return (bool) $uri->isSSL();
 	}
