@@ -1,6 +1,6 @@
 {
     "name": "yireo/plg-system-sslredirect",
-    "type": "joomla-extension",
+    "type": "joomlatools-composer",
     "license": "GPL-3.0",
     "description": "SSLRedirect plugin for Joomla",
     "keywords": [
@@ -22,6 +22,6 @@
         }
     },
     "require": {
-        "nooku/nooku-framework": "2.*"
+        "joomlatools/composer": "*"
     }
 }
